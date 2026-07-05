@@ -22,7 +22,7 @@ jobs:
       - name: Run the script
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
-          ACCOUNT_ID: ${{secrets.ACCOUNT_ID}}
+          ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x block_ads.sh
