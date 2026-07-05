@@ -17,6 +17,6 @@ jobs:
           CLO_API_TOKEN: ${{ secrets.API_TOKEN }}
           CLO_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         run: |
-          chmod +x ./block_ads.sh
-          ./block_ads.sh
+          [https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt](https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt)
+
 
