@@ -1,1 +1,22 @@
+name: Cloudflare Gateway - Block Ads
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run blocklist update script
+        env:
+          CLO_API_TOKEN: ${{ secrets.API_TOKEN }}
+          CLO_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        run: |
+          chmod +x ./block_ads.sh
+          ./block_ads.sh
 
