@@ -12,10 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run blocklist update script
+      -       - name: Run blocklist update script
         env:
           CLO_API_TOKEN: ${{ secrets.API_TOKEN }}
           CLO_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         run: |
+          # 1. Download the list
           curl -sSL https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt -o blocklist.txt
-          # TODO: Add your command below to push blocklist.txt to Cloudflare
+          
+          # 2. Install dependencies and run the sync script
+          pip install requests
+          python sync_blocklist.py
+
