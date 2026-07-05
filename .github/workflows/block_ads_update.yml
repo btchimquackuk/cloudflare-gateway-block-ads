@@ -1,4 +1,4 @@
-name: Cloudflare Gateway - Block Ads
+ name: Cloudflare Gateway - Block Ads
 
 on:
   schedule:
@@ -28,6 +28,18 @@ jobs:
           CLO_ACCOUNT_ID: ${{ secrets.CLO_ACCOUNT_ID }}
         run: |
           curl -sSL https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt -o blocklist.txt
-          python .github/workflows/sync_blocklist.py
+          python .github/workflows/sync_blocklist.pycurl -X POST "https://api.cloudflare.com/client/v4/accounts/YOUR_ACCOUNT_ID/gateway/lists" \
+     -H "Authorization: Bearer YOUR_API_TOKEN" \
+     -H "Content-Type: application/json" \
+     --data '{
+       "name": "Ad Blocklist Chunk 1",
+       "type": "DOMAIN",
+       "description": "Created via API",
+       "items": [
+         {"value": "example-ad-domain.com"},
+         {"value": "another-ad-domain.net"}
+       ]
+     }'
+
 
 
