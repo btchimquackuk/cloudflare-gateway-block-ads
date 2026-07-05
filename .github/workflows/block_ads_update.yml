@@ -1,29 +1,21 @@
-name: Block ads update
+name: Cloudflare Gateway - Block Ads
 
 on:
   schedule:
-    - cron: '0 * * * *'
-  push:
-    branches:
-      - '**'
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
-  block_ads_update:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install jq, curl and other utilities
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq curl coreutils
-
-      - name: Run the script
+      - name: Run blocklist update script
         env:
-          API_TOKEN: ${{ secrets.API_TOKEN }}
-          ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLO_API_TOKEN: ${{ secrets.API_TOKEN }}
+          CLO_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         run: |
-          chmod +x block_ads.sh
+          chmod +x ./block_ads.sh
           ./block_ads.sh
