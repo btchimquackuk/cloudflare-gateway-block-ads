@@ -17,6 +17,5 @@ jobs:
           CLO_API_TOKEN: ${{ secrets.API_TOKEN }}
           CLO_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         run: |
-          [https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt](https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt](https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt)
-
-
+          curl -sSL https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt -o blocklist.txt
+          # TODO: Add your command below to push blocklist.txt to Cloudflare
