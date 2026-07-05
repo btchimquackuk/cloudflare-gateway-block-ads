@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
-
+https://raw.githubusercontent.com/btchimquackuk/blocklist.txt/main/plain%20txt%20domain%5D%28https%3A//raw.githubusercontent.com/btchimquackuk/blocklist.txt/main/plain%20txt%20domain%29
 jobs:
   build:
     runs-on: ubuntu-latest
