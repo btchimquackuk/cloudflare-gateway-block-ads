@@ -19,3 +19,4 @@ jobs:
         run: |
           chmod +x ./block_ads.sh
           ./block_ads.sh
+
