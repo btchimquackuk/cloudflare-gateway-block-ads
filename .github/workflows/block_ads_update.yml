@@ -1,5 +1,4 @@
  name: Cloudflare Gateway - Block Ads
-
 on:
   schedule:
     - cron: '0 0 * * *'
