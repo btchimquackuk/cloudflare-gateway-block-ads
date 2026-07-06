@@ -1,9 +1,10 @@
- name: Cloudflare Gateway - Block Ads
+name: Cloudflare Gateway - Block Ads
+
 on:
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
-https://raw.githubusercontent.com/btchimquackuk/blocklist.txt/main/plain%20txt%20domain%5D%28https%3A//raw.githubusercontent.com/btchimquackuk/blocklist.txt/main/plain%20txt%20domain%29
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,34 +12,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      -       - name: Run blocklist update script
+      - name: Run blocklist update script
         env:
           CLO_API_TOKEN: ${{ secrets.API_TOKEN }}
           CLO_ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
         run: |
           # 1. Download the list
-          curl -sSL https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt -o blocklist.txt
-          
+          curl -sSL https://raw.githubusercontent.com/btchimquackuk/cloudflare-gateway-block-ads/main/oisd_small_domains.txt -o oisd_small_domains.txt
+
           # 2. Install dependencies and run the sync script
           pip install requests
-          python sync_blocklist.      - name: Run blocklist update script
-        env:
-          CLO_API_TOKEN: ${{ secrets.CLO_API_TOKEN }}
-          CLO_ACCOUNT_ID: ${{ secrets.CLO_ACCOUNT_ID }}
-        run: |
-          curl -sSL https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild2_small.txt -o blocklist.txt
-          python .github/workflows/sync_blocklist.pycurl -X POST "https://api.cloudflare.com/client/v4/accounts/YOUR_ACCOUNT_ID/gateway/lists" \
-     -H "Authorization: Bearer YOUR_API_TOKEN" \
-     -H "Content-Type: application/json" \
-     --data '{
-       "name": "Ad Blocklist Chunk 1",
-       "type": "DOMAIN",
-       "description": "Created via API",
-       "items": [
-         {"value": "example-ad-domain.com"},
-         {"value": "another-ad-domain.net"}
-       ]
-     }'
-
-
-
+          python .github/workflows/sync_blocklist.py
